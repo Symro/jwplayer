@@ -49,6 +49,7 @@ $( document ).ready(function() {
     		console.log('position : '+playerInstance.getPosition());
     	});
 
+    	// Capture d'écran
     	function snapShot(){
 
 	    	context.fillRect(0,0,w,h);
@@ -56,6 +57,7 @@ $( document ).ready(function() {
 
     	}
 
+    	// Evenement pour lancer la capture
     	$( ".capture" ).click(function() {
 			snapShot();
 		});
@@ -68,6 +70,7 @@ $( document ).ready(function() {
 		dataType:'jsonp',
 		success:function(data){
 
+			// récupration du lien et de l'image
 			videoUrl = data.feed.entry[0].link[0].href;
 			videoImage = data.feed.entry[0].media$group.media$thumbnail[0].url;
 
