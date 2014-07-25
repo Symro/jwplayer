@@ -5,8 +5,8 @@ $( document ).ready(function() {
     	flashplayer: '../app/bower_components/jwplayer-mirror/jwplayer.flash.swf',
         file: "../images/FunnyCatJumpFail.mp4",
         image: "../images/FunnyCatJumpFail.mp4",
-        width: 480,
-        height: 270,
+        width: "100%",
+        aspectratio: "16:9"
     });
 
     // Controler la vidéo avec la barre d'espace
