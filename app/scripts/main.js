@@ -6,7 +6,8 @@ $( document ).ready(function() {
         file: "../images/FunnyCatJumpFail.mp4",
         image: "../images/FunnyCatJumpFail.mp4",
         width: "100%",
-        aspectratio: "16:9"
+        aspectratio: "16:9",
+        skin: "../images/six/six.xml",
     });
 
     // Controler la vidéo avec la barre d'espace
@@ -21,6 +22,8 @@ $( document ).ready(function() {
     // Callbacks de la vidéo
     playerInstance.onReady(function(){
 
+        console.log(playerInstance.getBuffer());
+
     	console.log('ready');
 
     	var video = document.querySelector('video');
@@ -29,6 +32,7 @@ $( document ).ready(function() {
     	var w = 480;
     	var h = 270;
     	var ratio;
+        var duration;
 
     	// calcul du ratio
 		ratio = w / h;
@@ -40,13 +44,25 @@ $( document ).ready(function() {
 
     	playerInstance.onPlay(function(){
     		console.log('playing');
-    		console.log('position : '+playerInstance.getPosition());
-    		console.log('Durée : '+playerInstance.getDuration());
+            duration = playerInstance.getDuration();
+
+            // Mise à jour de la position de la vidéo sur la custom progress bar
+            playerInstance.durationProcessor = setInterval(function(){
+
+                if (playerInstance.getState() == "PLAYING" && playerInstance.getDuration != -1) {
+
+                    clearTimeout(playerInstance.durationProcessor);
+                    currentTime = (playerInstance.getPosition() / playerInstance.getDuration())*100;
+                    $('.progressBar > div').width(currentTime+"%");
+                    
+                }
+
+            }, 150);
+
     	});
 
     	playerInstance.onPause(function(){
     		console.log('paused');
-    		console.log('position : '+playerInstance.getPosition());
     	});
 
     	// Capture d'écran

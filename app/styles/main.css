@@ -63,6 +63,18 @@ body {
     margin-top: 28px;
 }
 
+.progressBar{
+    height: 20px;
+    width: 100%;
+    border: 1px solid #CCC;
+    border-radius: 5px;
+}
+.progressBar > div {
+    height: 100%;
+    width: 0%;
+    background-color: #428bca;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .container {
